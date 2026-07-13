@@ -44,6 +44,27 @@ products:
     url: "https://www.alibaba.com/product-detail/New-Arrival-2024-M8-Smart-Bracelet_1601261857107.html"
     my_sell_price: 99000
 
+  - name: "Handheld Fan (Supplier)"
+    category: "Summer"
+    role: "supplier"
+    platform: "alibaba"
+    url: "https://www.alibaba.com/product-detail/Customized-Logo-Mini-Handy-Foldable-HandHeld_1601567338686.html"
+    my_sell_price: 99000
+
+  - name: "Sunglasses UV400 (Supplier)"
+    category: "Summer"
+    role: "supplier"
+    platform: "alibaba"
+    url: "https://www.alibaba.com/product-detail/Wholesale-Bulk-Promotional-Men-Women-Fashion_1600476187246.html"
+    my_sell_price: 79000
+
+  - name: "Hair Clips Flower (Supplier)"
+    category: "Fashion Accessories"
+    role: "supplier"
+    platform: "1688"
+    url: "https://detail.1688.com/offer/717448799228.html"
+    my_sell_price: 20000
+
   # === COMPETITOR PRICES (Vietnam) ===
   # Add Shopee competitor products here. Format:
   # https://shopee.vn/product-name-i.{shopid}.{itemid}
