@@ -47,20 +47,6 @@ export function HeroSection() {
             {t("hero.body")}
           </p>
 
-          {/* Terminal-style code line (devin.ai/cli inspired) */}
-          <div
-            className="mx-auto mt-7 max-w-lg animate-fade-up"
-            style={{ animationDelay: "150ms" }}
-          >
-            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-deep-900/60 px-4 py-3 font-mono text-sm backdrop-blur">
-              <span className="text-ocean-400">$</span>
-              <span className="text-slate-300">
-                curl -fsSL https://ocean-catch.dev/install.sh | bash
-              </span>
-              <span className="ml-auto h-3.5 w-2 animate-pulse bg-ocean-300/80" />
-            </div>
-          </div>
-
           <div
             className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row animate-fade-up"
             style={{ animationDelay: "180ms" }}
