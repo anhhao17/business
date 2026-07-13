@@ -8,7 +8,9 @@ export const env = {
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   adminEmail: process.env.ADMIN_EMAIL ?? "",
-  contactEmail: process.env.CONTACT_EMAIL ?? "orders@oceancatch.com",
+  contactEmail: process.env.CONTACT_EMAIL ?? "hiimanhhao@gmail.com",
+  contactPhone: process.env.CONTACT_PHONE ?? "0868 786 432",
+  contactAddress: process.env.CONTACT_ADDRESS ?? "Binh Thanh, Ho Chi Minh City",
 };
 
 /** True when Supabase env vars look valid (not the placeholder template). */

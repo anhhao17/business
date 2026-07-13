@@ -72,11 +72,13 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
             </li>
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 text-ocean-300" />
-              <span>(555) 012-3456</span>
+              <a href="tel:+84868786432" className="link-underline hover:text-white">
+                {env.contactPhone}
+              </a>
             </li>
             <li className="flex items-center gap-2.5">
               <MapPin className="h-4 w-4 text-ocean-300" />
-              <span>Pier 7, Harbor District</span>
+              <span>{env.contactAddress}</span>
             </li>
           </ul>
         </div>

@@ -63,10 +63,12 @@ export default function ContactPage() {
                 </a>
               </ContactRow>
               <ContactRow icon={<Phone className="h-5 w-5" />} label={t("contact.phone")}>
-                (555) 012-3456
+                <a href="tel:+84868786432" className="link-underline hover:text-white">
+                  {env.contactPhone}
+                </a>
               </ContactRow>
               <ContactRow icon={<MapPin className="h-5 w-5" />} label={t("contact.pier")}>
-                Pier 7, Harbor District
+                {env.contactAddress}
               </ContactRow>
             </ul>
             <div className="mt-6 rounded-xl border border-ocean-400/20 bg-ocean-400/5 p-4 text-sm text-slate-300">
