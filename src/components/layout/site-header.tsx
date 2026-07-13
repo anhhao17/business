@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, ShoppingBag, Waves, X } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { useT } from "@/components/i18n/i18n-provider";
+import { HoverText } from "@/components/effects/hover-text";
 import { LanguageToggle } from "@/components/i18n/language-toggle";
 import type { Lang } from "@/lib/i18n/dictionaries";
 
@@ -67,7 +68,7 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                   : "text-slate-300 hover:text-white"
               }`}
             >
-              {link.label}
+              <HoverText>{link.label}</HoverText>
               {isActive(link.href) && (
                 <span className="absolute inset-x-3 -bottom-px h-px bg-gradient-to-r from-transparent via-ocean-400 to-transparent" />
               )}

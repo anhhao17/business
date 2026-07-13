@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Sora, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-context";
 import { CartDrawer } from "@/components/cart/cart-drawer";
@@ -21,6 +21,13 @@ const inter = Inter({
 const sora = Sora({
   subsets: ["latin"],
   variable: "--font-display",
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -58,7 +65,7 @@ export default async function RootLayout({
 }) {
   const lang = await getLang();
   return (
-    <html lang={lang === "vi" ? "vi" : "en"} className={`${inter.variable} ${sora.variable}`}>
+    <html lang={lang === "vi" ? "vi" : "en"} className={`${inter.variable} ${sora.variable} ${plexMono.variable}`}>
       <body className="min-h-screen bg-ocean-linear font-sans">
         <ScrollProgress />
         <DotGrid />
