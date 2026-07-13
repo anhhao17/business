@@ -1,7 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd website_sell_seafood && npm install && npm run build",
-  "outputDirectory": "website_sell_seafood/.next",
-  "installCommand": "cd website_sell_seafood && npm install",
-  "framework": "nextjs"
-}
