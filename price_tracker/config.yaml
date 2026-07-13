@@ -1,0 +1,64 @@
+# Price Tracker Configuration
+# Add products you want to track. Each product has:
+#   name: display name
+#   category: product category
+#   role: "supplier" (China source) or "competitor" (Vietnam seller)
+#   platform: "1688" | "alibaba" | "shopee" | "taobao" | "manual"
+#   url: product page URL
+#   my_sell_price: your selling price in VND (for margin calc, optional)
+
+products:
+  # === SUPPLIER PRICES (China) ===
+  - name: "Neck Fan USB (Supplier)"
+    category: "Tech Accessories"
+    role: "supplier"
+    platform: "1688"
+    url: "https://detail.1688.com/offer/784671047598.html"
+    my_sell_price: 149000
+
+  - name: "Smart Plug Tuya (Supplier)"
+    category: "Smart Home"
+    role: "supplier"
+    platform: "alibaba"
+    url: "https://www.alibaba.com/product-detail/Tuya-Smart-Universal-Plug-EU-UK_1601143750268.html"
+    my_sell_price: 199000
+
+  - name: "TWS Earbuds E8 (Supplier)"
+    category: "Tech Accessories"
+    role: "supplier"
+    platform: "1688"
+    url: "https://detail.1688.com/offer/974485664661.html"
+    my_sell_price: 499000
+
+  - name: "Phone Case Clear (Supplier)"
+    category: "Tech Accessories"
+    role: "supplier"
+    platform: "alibaba"
+    url: "https://www.alibaba.com/product-detail/Wholesale-Clear-Transparent-PC-TPU-Phone_1601617574769.html"
+    my_sell_price: 79000
+
+  - name: "M8 Smart Bracelet (Supplier)"
+    category: "Wearables"
+    role: "supplier"
+    platform: "alibaba"
+    url: "https://www.alibaba.com/product-detail/New-Arrival-2024-M8-Smart-Bracelet_1601261857107.html"
+    my_sell_price: 99000
+
+  # === COMPETITOR PRICES (Vietnam) ===
+  # Add Shopee competitor products here. Format:
+  # https://shopee.vn/product-name-i.{shopid}.{itemid}
+  # Example:
+  # - name: "Neck Fan - Competitor A"
+  #   category: "Tech Accessories"
+  #   role: "competitor"
+  #   platform: "shopee"
+  #   url: "https://shopee.vn/quat-co-mini-i.123456.789012"
+  #   my_sell_price: 149000
+
+  # === MANUAL ENTRY (for products that can't be scraped) ===
+  - name: "USB-C Cable (Manual)"
+    category: "Tech Accessories"
+    role: "supplier"
+    platform: "manual"
+    url: ""
+    my_sell_price: 49000
