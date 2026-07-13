@@ -4,7 +4,7 @@ import { ChevronRight, ArrowLeft } from "lucide-react";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { renderMarkdown } from "@/lib/markdown";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 
 type Params = Promise<{ slug: string }>;
 
@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Params }) {
 
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { t } = await getT();
+  const lang = await getLang();
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
@@ -40,7 +41,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       <header className="container-page py-10">
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-xs font-semibold uppercase tracking-wider text-ocean-300">
-            {formatDate(post.published_at)}
+            {formatDate(post.published_at, lang)}
           </span>
           <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
             {post.title}

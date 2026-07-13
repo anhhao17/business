@@ -2,13 +2,14 @@ import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { getBlogPosts } from "@/lib/data";
 import { Reveal } from "@/components/effects/scroll-reveal";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
 
 export const metadata = { title: "Recipes & Guides" };
 
 export default async function BlogPage() {
   const { t } = await getT();
+  const lang = await getLang();
   const posts = await getBlogPosts({ publishedOnly: true });
   const [featured, ...rest] = posts;
 
@@ -52,7 +53,7 @@ export default async function BlogPage() {
                 </div>
                 <div className="flex flex-col justify-center p-8 sm:p-10">
                   <span className="text-xs font-semibold uppercase tracking-wider text-ocean-300">
-                    {t("blog.featured")} · {formatDate(featured.published_at)}
+                    {t("blog.featured")} · {formatDate(featured.published_at, lang)}
                   </span>
                   <h2 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
                     {featured.title}
@@ -86,7 +87,7 @@ export default async function BlogPage() {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <span className="text-xs text-slate-400">
-                      {formatDate(post.published_at)}
+                      {formatDate(post.published_at, lang)}
                     </span>
                     <h3 className="mt-2 font-display text-lg font-semibold text-white">
                       {post.title}

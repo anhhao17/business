@@ -39,72 +39,55 @@ export function SiteHeader({ lang }: { lang: Lang }) {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-deep-900/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-ocean-400 to-abyss-600 shadow-glow">
-            <Waves className="h-5 w-5 text-white" strokeWidth={2.2} />
-            <span className="absolute inset-0 rounded-xl bg-wave-shine opacity-0 transition-opacity group-hover:opacity-100" />
+    <>
+      <nav className={`pill-nav ${scrolled ? "scrolled" : ""}`}>
+        <Link href="/" className="pill-nav-brand">
+          <span className="pill-nav-brand-icon">
+            <Waves className="h-4 w-4 text-white" strokeWidth={2.2} />
           </span>
-          <span className="font-display text-lg font-bold tracking-tight text-white">
-            Ocean<span className="text-ocean-300">{t("brand.suffix")}</span>
-          </span>
+          Ocean<span className="text-ocean-300">{t("brand.suffix")}</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                isActive(link.href)
-                  ? "text-white"
-                  : "text-slate-300 hover:text-white"
-              }`}
+              className={`pill-nav-link ${isActive(link.href) ? "active" : ""}`}
             >
               <HoverText>{link.label}</HoverText>
-              {isActive(link.href) && (
-                <span className="absolute inset-x-3 -bottom-px h-px bg-gradient-to-r from-transparent via-ocean-400 to-transparent" />
-              )}
             </Link>
           ))}
-        </nav>
+        </div>
 
-        <div className="flex items-center gap-2">
-          <LanguageToggle current={lang} />
+        <div className="pill-nav-actions">
+          <div className="hidden md:block">
+            <LanguageToggle current={lang} />
+          </div>
           <button
             onClick={open}
             aria-label={t("common.openCart")}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-100 transition hover:border-ocean-400/50 hover:bg-white/[0.08]"
+            className="pill-nav-cart"
           >
-            <ShoppingBag className="h-5 w-5" />
+            <ShoppingBag className="h-4 w-4" />
             {count > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-gradient-to-br from-ocean-400 to-abyss-500 px-1 text-[10px] font-bold text-white shadow-glow">
-                {count}
-              </span>
+              <span className="pill-nav-cart-badge">{count}</span>
             )}
           </button>
-
           <button
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={t("common.toggleMenu")}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-100 md:hidden"
+            className="pill-nav-cart md:hidden"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-deep-900/95 backdrop-blur-xl md:hidden">
-          <nav className="container-page flex flex-col gap-1 py-4">
+        <div className="fixed left-4 right-4 top-20 z-40 rounded-2xl border border-white/10 bg-deep-900/95 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-1 p-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -118,9 +101,12 @@ export function SiteHeader({ lang }: { lang: Lang }) {
                 {link.label}
               </Link>
             ))}
-          </nav>
+            <div className="mt-2 border-t border-white/10 pt-2">
+              <LanguageToggle current={lang} />
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

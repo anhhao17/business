@@ -9,7 +9,7 @@ import { formatPrice } from "@/lib/format";
 
 export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart();
-  const { t } = useT();
+  const { t, lang } = useT();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
                     <p className="text-xs text-slate-400">{t("common.qty")} {i.quantity}</p>
                   </div>
                   <span className="text-sm font-medium text-white">
-                    {formatPrice(i.product.price * i.quantity)}
+                    {formatPrice(i.product.price * i.quantity, lang)}
                   </span>
                 </div>
               ))}
@@ -169,18 +169,18 @@ export default function CheckoutPage() {
             <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-sm">
               <div className="flex justify-between">
                 <span className="text-slate-400">{t("common.subtotal")}</span>
-                <span className="text-white">{formatPrice(subtotal)}</span>
+                <span className="text-white">{formatPrice(subtotal, lang)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-400">{t("common.shipping")}</span>
                 <span className="text-white">
-                  {shipping === 0 ? t("common.free") : formatPrice(shipping)}
+                  {shipping === 0 ? t("common.free") : formatPrice(shipping, lang)}
                 </span>
               </div>
               <div className="flex justify-between border-t border-white/10 pt-3">
                 <span className="font-semibold text-white">{t("common.total")}</span>
                 <span className="font-display text-xl font-bold text-white">
-                  {formatPrice(total)}
+                  {formatPrice(total, lang)}
                 </span>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function CheckoutPage() {
             <button type="submit" disabled={submitting} className="btn-primary mt-6 w-full">
               {submitting
                 ? t("checkout.placing")
-                : `${t("checkout.placeOrder")} · ${formatPrice(total)}`}
+                : `${t("checkout.placeOrder")} · ${formatPrice(total, lang)}`}
             </button>
           </div>
         </div>

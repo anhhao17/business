@@ -1,6 +1,6 @@
 import { env } from "@/lib/env";
 import { formatDate } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 
 export const metadata = { title: "Messages" };
 
@@ -16,6 +16,7 @@ type ApiMessage = {
 
 export default async function AdminMessagesPage() {
   const { t } = await getT();
+  const lang = await getLang();
   const res = await fetch(`${env.siteUrl}/api/contact`, { cache: "no-store" });
   const data = await res.json();
   const messages: ApiMessage[] = data.messages ?? [];
@@ -41,7 +42,7 @@ export default async function AdminMessagesPage() {
                     {m.subject}
                   </h3>
                   <p className="mt-1 text-xs text-slate-500">
-                    {m.name} · <a href={`mailto:${m.email}`} className="link-underline hover:text-white">{m.email}</a> · {formatDate(m.created_at)}
+                    {m.name} · <a href={`mailto:${m.email}`} className="link-underline hover:text-white">{m.email}</a> · {formatDate(m.created_at, lang)}
                   </p>
                 </div>
                 {!m.handled && (

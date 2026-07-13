@@ -1,6 +1,6 @@
 import { env } from "@/lib/env";
 import { formatPrice, formatDate } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { StatusBadge } from "@/components/admin/status-badge";
 
 export const metadata = { title: "Orders" };
@@ -20,6 +20,7 @@ type ApiOrder = {
 
 export default async function AdminOrdersPage() {
   const { t } = await getT();
+  const lang = await getLang();
   const res = await fetch(`${env.siteUrl}/api/orders`, { cache: "no-store" });
   const data = await res.json();
   const orders: ApiOrder[] = data.orders ?? [];
@@ -48,11 +49,11 @@ export default async function AdminOrdersPage() {
                     <StatusBadge status={o.status} />
                   </div>
                   <p className="mt-1 text-xs text-slate-500">
-                    #{o.id.slice(0, 8).toUpperCase()} · {formatDate(o.created_at)}
+                    #{o.id.slice(0, 8).toUpperCase()} · {formatDate(o.created_at, lang)}
                   </p>
                 </div>
                 <p className="font-display text-lg font-bold text-white">
-                  {formatPrice(o.total)}
+                  {formatPrice(o.total, lang)}
                 </p>
               </div>
 
@@ -78,7 +79,7 @@ export default async function AdminOrdersPage() {
                     {o.items.map((item, idx) => (
                       <li key={idx} className="flex justify-between text-slate-300">
                         <span>{item.quantity}× {item.name}</span>
-                        <span>{formatPrice(item.price * item.quantity)}</span>
+                        <span>{formatPrice(item.price * item.quantity, lang)}</span>
                       </li>
                     ))}
                   </ul>

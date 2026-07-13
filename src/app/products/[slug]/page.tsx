@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ChevronRight, MapPin, Star, Truck, ShieldCheck, Snowflake } from "lucide-react";
 import { getProductBySlug, getProducts } from "@/lib/data";
 import { formatPrice } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { ProductPurchaseBox } from "@/components/product/product-purchase-box";
 import { ProductCard } from "@/components/product/product-card";
 import { Reveal } from "@/components/effects/scroll-reveal";
@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Params }) {
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
   const { t } = await getT();
+  const lang = await getLang();
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
@@ -126,7 +127,7 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
           <div className="mt-6 flex items-baseline gap-2">
             <span className="font-display text-4xl font-bold text-white">
-              {formatPrice(product.price)}
+              {formatPrice(product.price, lang)}
             </span>
             <span className="text-sm text-slate-400">{product.unit}</span>
           </div>

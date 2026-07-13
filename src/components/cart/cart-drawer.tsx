@@ -8,7 +8,7 @@ import { formatPrice } from "@/lib/format";
 
 export function CartDrawer() {
   const { items, isOpen, close, setQty, remove, subtotal, count } = useCart();
-  const { t } = useT();
+  const { t, lang } = useT();
 
   return (
     <>
@@ -93,7 +93,7 @@ export function CartDrawer() {
                       </button>
                     </div>
                     <p className="text-xs text-slate-400">
-                      {formatPrice(item.product.price)} · {item.product.unit}
+                      {formatPrice(item.product.price, lang)} · {item.product.unit}
                     </p>
                     <div className="mt-auto flex items-center justify-between pt-2">
                       <div className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export function CartDrawer() {
                         </button>
                       </div>
                       <span className="text-sm font-semibold text-white">
-                        {formatPrice(item.product.price * item.quantity)}
+                        {formatPrice(item.product.price * item.quantity, lang)}
                       </span>
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export function CartDrawer() {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-slate-400">{t("common.subtotal")}</span>
                 <span className="font-semibold text-white">
-                  {formatPrice(subtotal)}
+                  {formatPrice(subtotal, lang)}
                 </span>
               </div>
               <p className="mt-1 text-xs text-slate-500">

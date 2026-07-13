@@ -3,7 +3,7 @@ import { Pencil, Plus, Search } from "lucide-react";
 import { getCategories } from "@/lib/data";
 import { env } from "@/lib/env";
 import { formatPrice, formatDate } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { DeleteProductButton } from "@/components/admin/delete-product-button";
 
 export const metadata = { title: "Products" };
@@ -23,6 +23,7 @@ type ApiProduct = {
 
 export default async function AdminProductsPage() {
   const { t } = await getT();
+  const lang = await getLang();
   const [categories, productsRes] = await Promise.all([
     getCategories(),
     fetch(`${env.siteUrl}/api/admin/products`, { cache: "no-store" }).then((r) =>
@@ -87,7 +88,7 @@ export default async function AdminProductsPage() {
                       {p.categories?.name ?? "—"}
                     </td>
                     <td className="px-4 py-3 text-white">
-                      {formatPrice(p.price)}
+                      {formatPrice(p.price, lang)}
                       <span className="ml-1 text-xs text-slate-500">{p.unit}</span>
                     </td>
                     <td className="px-4 py-3">
@@ -109,7 +110,7 @@ export default async function AdminProductsPage() {
                       </div>
                     </td>
                     <td className="px-4 py-3 text-slate-400">
-                      {formatDate(p.created_at)}
+                      {formatDate(p.created_at, lang)}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-1">

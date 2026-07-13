@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Pencil, Plus } from "lucide-react";
 import { env } from "@/lib/env";
 import { formatDate } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { DeletePostButton } from "@/components/admin/delete-post-button";
 
 export const metadata = { title: "Blog" };
@@ -18,6 +18,7 @@ type ApiPost = {
 
 export default async function AdminBlogPage() {
   const { t } = await getT();
+  const lang = await getLang();
   const res = await fetch(`${env.siteUrl}/api/admin/blog`, { cache: "no-store" });
   const data = await res.json();
   const posts: ApiPost[] = data.posts ?? [];
@@ -74,7 +75,7 @@ export default async function AdminBlogPage() {
                       )}
                     </td>
                     <td className="px-4 py-3 text-slate-400">
-                      {p.published_at ? formatDate(p.published_at) : formatDate(p.created_at)}
+                      {p.published_at ? formatDate(p.published_at, lang) : formatDate(p.created_at, lang)}
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-1">

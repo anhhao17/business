@@ -6,7 +6,7 @@
 export type Lang = "en" | "vi";
 
 export const LANGS: Lang[] = ["en", "vi"];
-export const DEFAULT_LANG: Lang = "en";
+export const DEFAULT_LANG: Lang = "vi";
 export const LANG_COOKIE = "oc-lang";
 
 export const LANG_LABELS: Record<Lang, string> = {
@@ -338,6 +338,27 @@ const en: Dict = {
   "status.shipped": "shipped",
   "status.delivered": "delivered",
   "status.cancelled": "cancelled",
+
+  // Catch of the Day
+  "catch.title": "Catch of the Day",
+  "catch.endsIn": "Offer ends in",
+  "catch.grab": "Grab it",
+
+  // Marquee items
+  "marquee.fresh": "Fresh from the dock",
+  "marquee.sustainable": "Sustainable sourcing",
+  "marquee.cold": "Cold chain guaranteed",
+  "marquee.dock24": "Dock to door in 24h",
+  "marquee.wild": "Wild caught",
+  "marquee.daily": "Ocean fresh daily",
+  "marquee.premium": "Premium grade seafood",
+  "marquee.harvested": "Responsibly harvested",
+
+  // Stats
+  "stats.orders": "Orders shipped",
+  "stats.dock": "Dock to door",
+  "stats.cold": "Cold chain",
+  "stats.quality": "Quality guaranteed",
 };
 
 const vi: Dict = {
@@ -656,6 +677,27 @@ const vi: Dict = {
   "status.shipped": "đã gửi",
   "status.delivered": "đã giao",
   "status.cancelled": "đã hủy",
+
+  // Catch of the Day
+  "catch.title": "Món Ngon Hôm Nay",
+  "catch.endsIn": "Kết thúc trong",
+  "catch.grab": "Chốt đơn",
+
+  // Marquee items
+  "marquee.fresh": "Tươi từ bến cá",
+  "marquee.sustainable": "Khai thác bền vững",
+  "marquee.cold": "Đảm bảo chuỗi lạnh",
+  "marquee.dock24": "Từ bến đến tận nơi trong 24h",
+  "marquee.wild": "Cá đánh bắt tự nhiên",
+  "marquee.daily": "Tươi mới mỗi ngày",
+  "marquee.premium": "Hải sản cao cấp",
+  "marquee.harvested": "Khai thác có trách nhiệm",
+
+  // Stats
+  "stats.orders": "Đơn đã giao",
+  "stats.dock": "Từ bến đến nơi",
+  "stats.cold": "Chuỗi lạnh",
+  "stats.quality": "Đảm bảo chất lượng",
 };
 
 export const dictionaries: Record<Lang, Dict> = { en, vi };

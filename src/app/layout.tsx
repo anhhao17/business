@@ -35,25 +35,25 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: "Ocean Catch — Fresh Seafood, Delivered Overnight",
-    template: "%s · Ocean Catch",
+    default: "OceanCatch — Hải Sản Tươi Sống, Giao Tận Nơi",
+    template: "%s · OceanCatch",
   },
   description:
-    "Premium wild-caught and sustainably farmed seafood, shipped overnight from the dock to your door. Salmon, scallops, lobster, oysters, caviar and more.",
+    "Hải sản đánh bắt tự nhiên và nuôi trồng bền vững cao cấp, giao tươi trong ngày từ bến cá đến tận nhà. Cá hồi, sò điệp, tôm hùm, hàu, trứng cá và nhiều hơn nữa.",
   keywords: [
-    "fresh seafood",
-    "buy seafood online",
-    "wild salmon",
-    "scallops",
-    "lobster",
-    "oysters",
-    "caviar",
-    "sustainable seafood",
+    "hải sản tươi",
+    "mua hải sản online",
+    "cá hồi tự nhiên",
+    "sò điệp",
+    "tôm hùm",
+    "hàu",
+    "trứng cá",
+    "hải sản bền vững",
   ],
   openGraph: {
-    title: "Ocean Catch — Fresh Seafood, Delivered Overnight",
+    title: "OceanCatch — Hải Sản Tươi Sống, Giao Tận Nơi",
     description:
-      "Premium wild-caught and sustainably farmed seafood, shipped overnight from the dock to your door.",
+      "Hải sản đánh bắt tự nhiên và nuôi trồng bền vững cao cấp, giao tươi trong ngày từ bến cá đến tận nhà.",
     type: "website",
     url: env.siteUrl,
   },

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowRight, Fish, ShieldCheck, Truck, Waves } from "lucide-react";
 import { useT } from "@/components/i18n/i18n-provider";
 import { Parallax } from "@/components/effects/parallax";
+import { MagneticButton } from "@/components/effects/magnetic-button";
+import { WaveDivider } from "@/components/effects/wave-divider";
 
 export function HeroSection() {
   const { t } = useT();
@@ -25,7 +27,7 @@ export function HeroSection() {
         />
       </Parallax>
 
-      <div className="container-page relative py-24 sm:py-32 lg:py-40">
+      <div className="container-page relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36">
         <div className="mx-auto max-w-3xl text-center">
           <span className="section-eyebrow animate-fade-up">
             <Waves className="h-3.5 w-3.5" /> {t("hero.eyebrow")}
@@ -51,12 +53,16 @@ export function HeroSection() {
             className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row animate-fade-up"
             style={{ animationDelay: "180ms" }}
           >
-            <Link href="/products" className="btn-primary">
-              {t("hero.ctaShop")} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/blog" className="btn-ghost">
-              {t("hero.ctaBlog")}
-            </Link>
+            <MagneticButton strength={0.4} radius={120}>
+              <Link href="/products" className="btn-primary">
+                {t("hero.ctaShop")} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </MagneticButton>
+            <MagneticButton strength={0.3} radius={80}>
+              <Link href="/blog" className="btn-ghost">
+                {t("hero.ctaBlog")}
+              </Link>
+            </MagneticButton>
           </div>
 
           {/* Trust strip */}
@@ -71,20 +77,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Wave divider */}
-      <div className="relative -mb-1">
-        <svg
-          className="block h-16 w-full text-deep-900"
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path
-            fill="currentColor"
-            d="M0,40 C240,80 480,0 720,32 C960,64 1200,16 1440,48 L1440,80 L0,80 Z"
-          />
-        </svg>
-      </div>
+      <WaveDivider color="rgba(4, 17, 31, 1)" />
     </section>
   );
 }

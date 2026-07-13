@@ -10,13 +10,14 @@ import {
 import { getProducts, getBlogPosts } from "@/lib/data";
 import { isSupabaseConfigured, env } from "@/lib/env";
 import { formatPrice, formatDate } from "@/lib/format";
-import { getT } from "@/lib/i18n";
+import { getT, getLang } from "@/lib/i18n";
 import { StatusBadge } from "@/components/admin/status-badge";
 
 export const metadata = { title: "Dashboard" };
 
 export default async function AdminDashboard() {
   const { t } = await getT();
+  const lang = await getLang();
   const [products, posts] = await Promise.all([
     getProducts(),
     getBlogPosts(),
@@ -100,7 +101,7 @@ export default async function AdminDashboard() {
           {t("admin.revenue")}
         </p>
         <p className="mt-1 font-display text-3xl font-bold text-white">
-          {formatPrice(revenue)}
+          {formatPrice(revenue, lang)}
         </p>
       </div>
 
@@ -134,12 +135,12 @@ export default async function AdminDashboard() {
                 {orders.slice(0, 6).map((o) => (
                   <tr key={o.id} className="border-b border-white/5 last:border-0">
                     <td className="px-4 py-3 text-white">{o.customer_name}</td>
-                    <td className="px-4 py-3 text-white">{formatPrice(o.total)}</td>
+                    <td className="px-4 py-3 text-white">{formatPrice(o.total, lang)}</td>
                     <td className="px-4 py-3">
                       <StatusBadge status={o.status} />
                     </td>
                     <td className="px-4 py-3 text-slate-400">
-                      {formatDate(o.created_at)}
+                      {formatDate(o.created_at, lang)}
                     </td>
                   </tr>
                 ))}

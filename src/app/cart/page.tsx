@@ -8,7 +8,7 @@ import { formatPrice } from "@/lib/format";
 
 export default function CartPage() {
   const { items, setQty, remove, subtotal, count } = useCart();
-  const { t } = useT();
+  const { t, lang } = useT();
 
   if (items.length === 0) {
     return (
@@ -72,7 +72,7 @@ export default function CartPage() {
                   </button>
                 </div>
                 <p className="text-xs text-slate-400">
-                  {formatPrice(item.product.price)} · {item.product.unit}
+                  {formatPrice(item.product.price, lang)} · {item.product.unit}
                 </p>
                 <div className="mt-auto flex items-center justify-between pt-3">
                   <div className="flex items-center gap-1 rounded-lg border border-white/10 p-1">
@@ -95,7 +95,7 @@ export default function CartPage() {
                     </button>
                   </div>
                   <span className="font-semibold text-white">
-                    {formatPrice(item.product.price * item.quantity)}
+                    {formatPrice(item.product.price * item.quantity, lang)}
                   </span>
                 </div>
               </div>
@@ -109,11 +109,11 @@ export default function CartPage() {
               {t("cart.orderSummary")}
             </h2>
             <div className="mt-4 space-y-2 text-sm">
-              <Row label={t("common.subtotal")} value={formatPrice(subtotal)} />
+              <Row label={t("common.subtotal")} value={formatPrice(subtotal, lang)} />
               <Row label={t("common.shipping")} value={t("common.freeOver")} muted />
               <Row
                 label={t("common.estimatedTotal")}
-                value={formatPrice(subtotal + (subtotal >= 75 ? 0 : 12))}
+                value={formatPrice(subtotal + (subtotal >= 75 ? 0 : 12), lang)}
                 strong
               />
             </div>

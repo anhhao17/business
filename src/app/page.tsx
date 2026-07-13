@@ -1,14 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Fish, ShieldCheck, Truck, Snowflake, Award } from "lucide-react";
 import { HeroSection } from "@/components/home/hero-section";
+import { CatchOfTheDay } from "@/components/home/catch-of-the-day";
 import { ProductCard } from "@/components/product/product-card";
 import { Reveal } from "@/components/effects/scroll-reveal";
+import { Marquee } from "@/components/effects/marquee";
+import { CountUp } from "@/components/effects/count-up";
+import { WaveDivider } from "@/components/effects/wave-divider";
 import { getFeaturedProducts, getCategories, getBlogPosts } from "@/lib/data";
 import { getT } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
+import { getLang } from "@/lib/i18n";
 
 export default async function HomePage() {
   const { t } = await getT();
+  const lang = await getLang();
   const [featured, categories, posts] = await Promise.all([
     getFeaturedProducts(8),
     getCategories(),
@@ -16,13 +22,64 @@ export default async function HomePage() {
   ]);
 
   const topPosts = posts.slice(0, 3);
+  const catchProduct = featured[0];
+
+  const marqueeItems = [
+    t("marquee.fresh"),
+    t("marquee.sustainable"),
+    t("marquee.cold"),
+    t("marquee.dock24"),
+    t("marquee.wild"),
+    t("marquee.daily"),
+    t("marquee.premium"),
+    t("marquee.harvested"),
+  ];
 
   return (
     <>
       <HeroSection />
 
-      {/* Categories */}
-      <section className="container-page py-16 sm:py-20">
+      {/* Marquee ticker */}
+      <div className="border-y border-white/5 bg-deep-900/50 py-3">
+        <Marquee items={marqueeItems} speed={25} />
+      </div>
+
+      {/* Stats with CountUp */}
+      <section className="container-page py-12 sm:py-16">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <Reveal>
+            <StatCard icon={<Fish className="h-5 w-5" />} value={<CountUp end={1200} suffix="+" />} label={t("stats.orders")} />
+          </Reveal>
+          <Reveal delay={1}>
+            <StatCard icon={<Truck className="h-5 w-5" />} value={<CountUp end={24} suffix="h" />} label={t("stats.dock")} />
+          </Reveal>
+          <Reveal delay={2}>
+            <StatCard icon={<Snowflake className="h-5 w-5" />} value={<CountUp end={48} suffix="h" />} label={t("stats.cold")} />
+          </Reveal>
+          <Reveal delay={3}>
+            <StatCard icon={<Award className="h-5 w-5" />} value={<CountUp end={100} suffix="%" />} label={t("stats.quality")} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Catch of the Day */}
+      {catchProduct && (
+        <section className="container-page pb-12 sm:pb-16">
+          <Reveal>
+            <CatchOfTheDay
+              name={catchProduct.name}
+              price={catchProduct.price}
+              unit={catchProduct.unit}
+              image_url={catchProduct.image_url}
+              slug={catchProduct.slug}
+              origin={catchProduct.origin}
+            />
+          </Reveal>
+        </section>
+      )}
+
+      {/* Categories — bento style */}
+      <section className="container-page py-12 sm:py-16">
         <Reveal>
           <div className="flex items-end justify-between gap-4">
             <div>
@@ -42,12 +99,13 @@ export default async function HomePage() {
           </div>
         </Reveal>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-8 bento-grid">
           {categories.map((cat, i) => (
-            <Reveal key={cat.id} delay={(i % 5) as 1 | 2 | 3 | 4 | 5}>
+            <Reveal key={cat.id} delay={((i % 4) + 1) as 1 | 2 | 3 | 4}>
               <Link
                 href={`/products?category=${cat.slug}`}
-                className="glass-card-hover group flex flex-col items-center gap-3 rounded-2xl p-5 text-center"
+                className={`glass-card-hover group flex flex-col items-center justify-center gap-3 rounded-2xl p-6 text-center ${i === 0 ? "bento-md" : "bento-sm"}`}
+                style={{ minHeight: i === 0 ? "180px" : "140px" }}
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-ocean-400/20 to-abyss-500/20 text-ocean-200 transition group-hover:scale-110">
                   <CategoryIcon name={cat.icon} />
@@ -59,7 +117,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured products */}
+      <WaveDivider color="rgba(10, 26, 48, 0.4)" />
+
+      {/* Featured products — bento grid */}
       <section className="container-page py-12 sm:py-16">
         <Reveal>
           <div className="flex items-end justify-between gap-4">
@@ -82,7 +142,7 @@ export default async function HomePage() {
         </Reveal>
 
         <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((p, i) => (
+          {featured.slice(0, 8).map((p, i) => (
             <Reveal key={p.id} delay={((i % 4) + 1) as 1 | 2 | 3 | 4}>
               <ProductCard product={p} />
             </Reveal>
@@ -96,9 +156,9 @@ export default async function HomePage() {
           <div className="glass-card relative overflow-hidden rounded-3xl p-8 sm:p-12">
             <div className="aurora-bg pointer-events-none absolute inset-0 opacity-40" />
             <div className="relative grid gap-8 md:grid-cols-3">
-              <ValueProp title={t("home.value.dock.title")} body={t("home.value.dock.body")} />
-              <ValueProp title={t("home.value.cold.title")} body={t("home.value.cold.body")} />
-              <ValueProp title={t("home.value.guarantee.title")} body={t("home.value.guarantee.body")} />
+              <ValueProp icon={<Truck className="h-6 w-6" />} title={t("home.value.dock.title")} body={t("home.value.dock.body")} />
+              <ValueProp icon={<Snowflake className="h-6 w-6" />} title={t("home.value.cold.title")} body={t("home.value.cold.body")} />
+              <ValueProp icon={<ShieldCheck className="h-6 w-6" />} title={t("home.value.guarantee.title")} body={t("home.value.guarantee.body")} />
             </div>
           </div>
         </Reveal>
@@ -143,7 +203,7 @@ export default async function HomePage() {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <span className="text-xs text-slate-400">
-                      {formatDate(post.published_at)}
+                      {formatDate(post.published_at, lang)}
                     </span>
                     <h3 className="mt-2 font-display text-lg font-semibold text-white">
                       {post.title}
@@ -188,11 +248,28 @@ export default async function HomePage() {
   );
 }
 
-function ValueProp({ title, body }: { title: string; body: string }) {
+function StatCard({ icon, value, label }: { icon: React.ReactNode; value: React.ReactNode; label: string }) {
   return (
-    <div>
+    <div className="glass-card flex flex-col items-center gap-2 rounded-2xl p-6 text-center">
+      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-ocean-400/10 text-ocean-300">
+        {icon}
+      </span>
+      <span className="font-display text-2xl font-bold text-white sm:text-3xl">
+        {value}
+      </span>
+      <span className="text-xs text-slate-400 sm:text-sm">{label}</span>
+    </div>
+  );
+}
+
+function ValueProp({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
+  return (
+    <div className="flex flex-col gap-3">
+      <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ocean-400/10 text-ocean-300">
+        {icon}
+      </span>
       <h3 className="font-display text-lg font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-300">{body}</p>
+      <p className="text-sm leading-relaxed text-slate-300">{body}</p>
     </div>
   );
 }
