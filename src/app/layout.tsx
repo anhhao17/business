@@ -9,6 +9,7 @@ import { I18nProvider } from "@/components/i18n/i18n-provider";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
 import { DotGrid } from "@/components/effects/dot-grid";
 import { FishCursor } from "@/components/effects/fish-cursor";
+import { SharkChomp } from "@/components/effects/shark-chomp";
 import { getLang } from "@/lib/i18n";
 import { env } from "@/lib/env";
 
@@ -70,6 +71,7 @@ export default async function RootLayout({
         <ScrollProgress />
         <DotGrid />
         <FishCursor />
+        <SharkChomp />
         <I18nProvider lang={lang}>
           <CartProvider>
             <div className="relative z-10 flex min-h-screen flex-col">

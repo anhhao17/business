@@ -298,4 +298,18 @@ body {
   .hover-effect:hover .hover-char > span {
     transform: translateY(-100%);
   }
+
+  /* ---- Shark chomp canvas (Fizz ultimate on click) ---- */
+  .shark-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 55;
+  }
+  @media (max-width: 768px) {
+    .shark-canvas { display: none; }
+  }
 }
