@@ -1,0 +1,4 @@
+SaleID,Date,Platform,Product Name,Order Ref,Quantity,Sell Price (VND),Platform Fee (VND),Ads Cost (VND),Shipping Cost (VND),Packaging (VND),COGS (VND),Net Profit (VND),Status,Customer Note
+SALE-001,2026-08-01,Shopee,Neck Fan USB,SPX001,1,149000,8940,22350,15000,3000,38370,61340,Delivered,
+SALE-002,2026-08-01,TikTok,Neck Fan USB,TT001,2,149000,17880,44700,20000,6000,76740,182680,Delivered,Bundle order
+SALE-003,2026-08-02,Shopee,Phone Case Clear,SPX002,1,79000,4740,11850,12000,2000,43760,46650,Delivered,

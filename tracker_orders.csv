@@ -1,0 +1,4 @@
+OrderID,Date,Agent,Product Name,Supplier Link,Quantity,Unit Cost (VND),Agent Fee (VND),Shipping/Unit (VND),Customs/Unit (VND),Total Landed/Unit (VND),Total Order Cost (VND),Status,Expected Delivery,Actual Delivery,Notes
+ORD-001,2026-07-15,Mã Tốc,Neck Fan USB,https://detail.1688.com/offer/784671047598.html,100,27650,2212,7125,1383,38370,3837000,Pending,2026-07-25,,First order - test agent reliability
+ORD-002,2026-07-15,Mã Tốc,Phone Case Clear,https://www.alibaba.com/product-detail/Wholesale-Clear-Transparent-PC-TPU-Phone_1601617574769.html,50,38500,3080,625,1925,43760,2188000,Pending,2026-07-25,,Low regulation product - easy start
+ORD-003,2026-07-15,Mã Tốc,USB-C Cable,https://tw.1688.com/item/-757362B3E4B5E7CFDF207638.html,100,9800,784,1000,490,12074,1207400,Pending,2026-07-25,,High volume low cost item

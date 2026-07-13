@@ -1,0 +1,7 @@
+ProductID,Product Name,Category,Source Platform,Supplier Link,Unit Cost (VND),Landed Cost (VND),Sell Price (VND),Gross Margin (VND),Gross Margin %,Stock On Hand,Stock In Transit,Reorder Point,Reorder Qty,Last Restock Date,Days Since Last Sale,Status
+P001,Neck Fan USB,Tech Accessories,1688,https://detail.1688.com/offer/784671047598.html,27650,38370,149000,110630,74%,100,0,30,100,,0,Active
+P002,Phone Case Clear,Tech Accessories,Alibaba,https://www.alibaba.com/product-detail/Wholesale-Clear-Transparent-PC-TPU-Phone_1601617574769.html,38500,43760,79000,35240,45%,50,0,20,100,,0,Active
+P003,USB-C Cable,Tech Accessories,1688,https://tw.1688.com/item/-757362B3E4B5E7CFDF207638.html,9800,12074,49000,36926,75%,100,0,30,200,,0,Active
+P004,Tuya Smart Plug,Smart Home,Alibaba,https://www.alibaba.com/product-detail/Tuya-Smart-Universal-Plug-EU-UK_1601143750268.html,92500,121238,199000,77762,39%,0,0,0,50,,0,Pending Certification
+P005,Tuya RGB LED Controller,Smart Home,Alibaba,https://www.alibaba.com/product-detail/Self-Developed-Smart-5in1-Tuya-Wifi_1601824916676.html,125500,162493,299000,136507,46%,0,0,0,50,,0,Pending Certification
+P006,M8 Smart Bracelet,Wearables,Alibaba,https://www.alibaba.com/product-detail/New-Arrival-2024-M8-Smart-Bracelet_1601261857107.html,35000,45975,99000,53025,54%,0,0,0,100,,0,Active
